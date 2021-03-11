@@ -1,0 +1,75 @@
+[display=false]{
+    --dsply: hidden;
+}
+
+[display=true]{
+    --dsply: visible;
+}
+
+.canvas-main-container{
+    grid-row: 2;
+    justify-self: center;
+    visibility: --var(--dsply);
+
+    .canvas-container{
+        background-color: #9fd8df;
+        width: 85vw;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        // border-radius: 3rem;
+        display: flex;
+        justify-content: center;
+        align-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 50px;
+        
+        .main-container-canvas{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin: 5px 5px;
+
+            &:hover{
+                cursor: grab;
+            }
+
+            .canvas{
+                background-color: white;
+                padding: 5px;
+                border-radius: 5px;
+                border: 0.1rem solid #707070;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 5;
+            
+            }
+            
+            .delete-icon{
+                background-color: #FF006E;
+                z-index: 1;
+                flex: 1;
+                border-radius: 1px;
+                padding-left: 5px;
+                margin-left: -5px;
+                cursor: pointer;
+
+                img{
+                    width: 25px;
+                    
+                }
+            }
+        }
+    }
+}
+
+.canvas-container-main:hover{
+    background-color: #85b8c0;
+    border-radius: 5px;
+}
+
+canvas{
+    width: 100px;
+}

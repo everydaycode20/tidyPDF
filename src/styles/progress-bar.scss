@@ -1,0 +1,17 @@
+[elm-width=true]{
+    --width: 
+}
+
+.progress-bar{
+    position: fixed;
+    width: 100%;
+    height: 4px;
+    top: 100px;
+    z-index: 80;
+
+    .content{
+        background-color: #1a6a74;
+        height: 100%;
+        animation: heightAnim 0.5s ease-in forwards;
+    }
+}
