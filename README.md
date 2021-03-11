@@ -2,7 +2,7 @@
 
 tidyPDF is a simple tool to arrange and/or delete your pages from your PDF documents.
 
-![working page gif](https://res.cloudinary.com/dzsr3ncf1/image/upload/v1615473353/gif_iqg9en.gif)
+![working page gif](https://res.cloudinary.com/dzsr3ncf1/image/upload/v1615502689/ezgif-6-b777ea67ff2a_edgv3y.gif)
 
 This app was created with ReactJS, [PDF.js](https://github.com/mozilla/pdf.js) and [pdf-lib](https://github.com/Hopding/pdf-lib) libraries.
 
