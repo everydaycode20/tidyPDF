@@ -12,7 +12,7 @@ Here is the working live page [tidyPDF.website](https://tidypdf.website/) if you
 
 ### Features
 
-*Change page order
-*Delete pages
+* Change page order
+* Delete pages
 
 It can handle multiple PDF files although it doesn't work well with hundreds of pages.
