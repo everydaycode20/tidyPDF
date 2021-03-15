@@ -5,14 +5,18 @@ import "./styles/main.scss";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter  as Router, Route, Switch} from "react-router-dom";
 import Error from "./comp/error-page";
+import Main from "./comp/main";
 
 ReactDOM.render(
   <Router>
     <Switch>
-      <Route exact path="/">
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+    <Route exact path="/">
+      <Main/>
+    </Route>
+      <Route path="/tool">
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
       </Route>
       <Route path="*">
         <Error/>
