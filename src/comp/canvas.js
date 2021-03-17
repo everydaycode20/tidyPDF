@@ -8,7 +8,6 @@ import LoadingIcon from "../icons/loading_gif.gif";
 const pdfjsLib = require("pdfjs-dist/webpack");
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.js`;
 
-
 function Canvas() {
     
     const {files} = useContext(Context);

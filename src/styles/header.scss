@@ -25,10 +25,8 @@
                     font-weight: 500;
                 }
             }
-
         }
     }
-    
 
     .load-btn{
         background-color: white;
@@ -51,6 +49,7 @@
             cursor: pointer;
             font-size: 2rem;
             padding: 0.8rem;
+            font-size: clamp(0.9rem, 3vw, 1.5rem);
 
         img{
             margin-left: 4px;

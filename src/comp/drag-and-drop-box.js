@@ -39,6 +39,22 @@ function DragAndDrop({setName, setBtnVisibility}) {
 
     const message = "file not supported, upload a PDF file";
 
+    function detectDevice() {
+        const toMatch = [
+            /Android/i,
+            /webOS/i,
+            /iPhone/i,
+            /iPad/i,
+            /iPod/i,
+            /BlackBerry/i,
+            /Windows Phone/i
+        ];
+
+        return toMatch.some(item =>{
+            return navigator.userAgent.match(item);
+        });
+    }
+
     function sendPDF(files) {
         setState(false);
         setProcessing(true);
@@ -149,10 +165,10 @@ function DragAndDrop({setName, setBtnVisibility}) {
                         </button>
                     </div>
 
-                    <div className="dnd-content">
+                    {!detectDevice() && <div className="dnd-content">
                         <p>or drag and drop</p>
                     </div>
-                    
+                    }
                 </section>
 
             </section>

@@ -33,7 +33,8 @@
         border-width: var(--border-width);
     
         .choose-files-container{
-    
+            width: 80%;
+            text-align: center;
             .choose-files-btn{
                 font-size: 2rem;
                 background-color: white;

@@ -2,8 +2,8 @@
     height: 100%;
     display: grid;
     grid-template-rows: 100px 1fr;
-    background-color: #ff7171;
-    color: white;
+    // background-color: #ff7171;
+    color: black;
 
     .container-link{
         background-color: #ff7171;
@@ -35,43 +35,43 @@
     }
     
     .main-features{
-        display: grid;
-        grid-row: 2;
-        grid-template-rows: 15% 60% 25%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        padding: 15px 0px;
 
         h1{
             font-weight: 300;
-            font-size: clamp(0.75rem, 10vw, 3rem);
-            margin-left: 100px;
-            align-self: center;
-            text-align: left;
+            font-size: clamp(1.5rem, 7vw, 3.5rem);
+            margin-left: 0;
+            align-self: flex-end;
+            text-align: center;
         }
 
         .steps-container{
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 1fr;
-            gap: 15px;
-            justify-items: center;
-            padding: 0px 15px;
             align-items: center;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
 
             .step{
                 width: 80%;
-                display: grid;
-                grid-template-rows: 80px 1fr;
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
 
                 h2{
                     font-weight: 300;
                     margin: 5px;
-                    font-size: clamp(0.5rem, 2vw, 1.5rem);
+                    font-size: clamp(1rem, 5vw, 2rem);
                 }
 
                 .gif-container{
-                    background-color: white;
+                    background-color: #f0e4d7;
                     padding: 16px;
                     border-radius: 5px;
-                    margin-top: 25px;
+                    margin-top: 15px;
                     
                     img{
                         width: 100%;
@@ -84,32 +84,210 @@
 
     .link-tool{
         text-decoration: none;
-        color: white;
+        color: black;
         display: flex;
         flex-direction: column;
-        width: 350px;
         align-self: center;
         justify-self: flex-end;
-        margin-right: 50px;
         grid-row: 3;
+        border: 3px solid #9fd8df;
+        padding: 10px;
+        border-radius: 5px;
+        width: 90%;
         
         .tool{
             justify-self: center;
             
             h3{
-                font-size: 2.5rem;
+                font-size: 1.75rem;
                 font-weight: 300;
 
                 span{
                     font-weight: 500;
                 }
             }
-
-            
         }
         img{
             width: 20%;
             align-self: flex-end;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px){
+
+    .main{
+        .main-features{
+            .steps-container{
+                .step{
+                    width: 65%;
+                }
+            }
+        }
+
+        .link-tool{
+            width: 40%;
+            .tool{
+                h3{
+                    font-size: 2rem;
+                }
+            }
+            img{
+                width: 20%;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 992px){
+
+    .main{
+        .main-features{
+            justify-content: flex-start;
+
+            h1{
+                font-size: clamp(1rem, 5vw, 3.5rem);
+                align-self: center;
+            }
+    
+            .steps-container{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-top: 20px;
+                justify-content: space-around;
+    
+                .step{
+                    width: 45%;
+                    display: grid;
+                    grid-template-rows: 80px 1fr;
+                    margin-top: 20px;
+    
+                    h2{
+                        font-size: clamp(1rem, 3vw, 2rem);
+                    }
+                }
+            }
+        }
+    
+        .link-tool{
+            width: 30%;
+
+            .tool{
+                justify-self: center;
+                
+                h3{
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px){
+
+    .main{
+        .main-features{
+            display: grid;
+            grid-row: 2;
+            grid-template-rows: 15% 60% 25%;
+            justify-content: center;
+            
+            h1{
+                font-size: clamp(0.7rem, 7vw, 3.5rem);
+                align-self: flex-end;
+                text-align: center;
+            }
+    
+            .steps-container{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr;
+                gap: 15px;
+                justify-items: center;
+                padding: 0px 15px;
+                align-items: center;
+    
+                .step{
+                    width: 80%;
+                    display: grid;
+                    grid-template-rows: 80px 1fr;
+    
+                    h2{
+                        font-size: clamp(1.2rem, 2vw, 1.5rem);
+                    }
+                }
+            }
+        }
+    
+        .link-tool{
+            margin-right: 50px;
+            
+            &:hover{
+                background-color: #9fd8df;
+                transition: 1s ease-in;
+            }
+            
+            .tool{
+                h3{
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1500px){
+
+    .main{
+        .main-features{
+            display: grid;
+            grid-row: 2;
+            grid-template-rows: 15% 60% 25%;
+            justify-content: normal;
+            
+            h1{
+                font-size: clamp(0.7rem, 10vw, 3.5rem);
+                align-self: flex-end;
+                text-align: left;
+                margin-left: 100px;
+            }
+    
+            .steps-container{
+
+                .step{
+                    width: 80%;
+                    display: grid;
+                    grid-template-rows: 80px 1fr;
+    
+                    h2{
+                        font-size: clamp(1.2rem, 2vw, 1.5rem);
+                    }
+                }
+            }
+        }
+    
+        .link-tool{
+            margin-right: 50px;
+            justify-self: flex-end;
+            width: 400px;
+            
+            &:hover{
+                background-color: #9fd8df;
+                transition: 1s ease-in;
+            }
+            
+            .tool{
+                
+                h3{
+                    font-size: 2.5rem;
+                }
+            }
+
+            img{
+                width: 15%;
+
+            }
         }
     }
 
