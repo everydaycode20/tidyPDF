@@ -16,6 +16,8 @@ function Canvas() {
 
     const [pdfFile, setPdfFile] = useState([]);
     
+    // const [pages, setPages] = useState([]);
+
     const [pages, setPages] = useState([]);
 
     const [loading, setLoading] = useState(false);
@@ -28,26 +30,41 @@ function Canvas() {
 
     const elmRef = useRef([]);
 
-    useEffect(() => {
+    const refLoad = useRef();
 
+    const [image, setImage] = useState();
+
+    useEffect(() => {
+        
+        showCanvas(pages);
+
+    }, [pages]);
+
+    const showCanvas = pages =>{
+        
         let progressBarCalc = 0;
         let c = 0;
+        console.log(itemsRef);
         setDisplayProgressBar(true);
+        console.log(elmRef);
         for (let i = 1; i <= pages.numPages; i++) {
+            
+            console.log("canvas begins");
             pages.getPage(i).then(page => {
-                
-                var scale = 1;
+                console.log(page);
+                var scale = 0.2;
                 var viewport = page.getViewport({scale: scale});
                 let canvas = itemsRef.current;
                 var context = canvas[i-1].getContext('2d');
-
-                canvas[i-1].height = viewport.height;
-                canvas[i-1].width = viewport.width;
+                console.log(viewport.height, viewport.width);
+                canvas[i-1].height = Math.round(viewport.height);
+                canvas[i-1].width = Math.round(viewport.width);
             
                 var renderContext = {canvasContext: context, viewport: viewport};
                 
-                var renderTask = page.render(renderContext);
                 
+                var renderTask = page.render(renderContext);
+                console.log(renderTask);
                 renderTask.promise.then(() =>{
                     c++;
                     progressBarCalc = Math.round((c / pages.numPages) * 100);
@@ -55,6 +72,7 @@ function Canvas() {
                     if (c === pages.numPages) {
                         return true;
                     }
+                    console.log("page loaded");
                 }).then(e =>{
                     if (e) {
                         if (progressBarCalc === 100) {
@@ -67,23 +85,29 @@ function Canvas() {
                 }).catch(error => console.log(error));
             });
         }
-    }, [pages]);
-    
+    };
+
+    console.log("render again");
     useEffect(() => {  
-        
+
         files && getPages();
-        
+
     }, [files]);
 
-    function getPages() {
+    const getPages = () =>{
         if (files.length) {
             
             setLoading(true);
             const loadingPdf = pdfjsLib.getDocument(files);
+            
             loadingPdf && loadingPdf.promise.then(pdf => {
+                
                 for (let i = 1; i <= pdf.numPages; i++) {
                     pdf.getPage(i).then(page => {
-                        setPdfFile(old => [...old, page]); 
+                        setPdfFile(old => [...old, page]);
+                        setImage(DeleteIcon);
+                        console.log(page, "139");
+                        
                     });
                 }
                 setPages(pdf);
@@ -101,6 +125,7 @@ function Canvas() {
             dragSrcEl = e.target.parentElement;
             e.dataTransfer.setData("text/plain", e.target.id);
             e.dataTransfer.effectAllowed = 'move';
+            this.style.opacity = "1";
         }
     
         function handleDragOver(e) {
@@ -157,24 +182,25 @@ function Canvas() {
             <section className="canvas-main-container">
                 
                 <section className="canvas-container">
-                    
                     {pdfFile.map((file, i) => {
                         const {_pageIndex} = file;
+                        console.log(i, "216");
+                        
                         return (
-                            <div className="canvas-container-main" key={i}>
+                            <div className="canvas-container-main" key={_pageIndex} ref={refLoad}>
                                 <div className={`main-container-canvas ${i+1}`} id={`main-container-canvas ${i+1}`} draggable={true} ref={el => elmRef.current[i] = el}>
                                     <div className={`canvas ${i}`} id={`canvas ${i}`} >
                                         <canvas  ref={el => itemsRef.current[i] = el} id={`canvas-item ${i}`} ></canvas>
                                         <span>{i+1}</span>
                                     </div>
                                     <div className="delete-icon" onClick={e => deletePage(e)}>
-                                        <img src={DeleteIcon} alt="delete icon"/>
+                                        <img src={image} alt="delete icon"/>
                                     </div>
                                 </div>
                             </div>
                         )
                     })}
-
+                    
                 </section>
             </section>
             

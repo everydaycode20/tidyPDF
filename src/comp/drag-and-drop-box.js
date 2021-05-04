@@ -39,7 +39,7 @@ function DragAndDrop({setName, setBtnVisibility}) {
 
     const message = "file not supported, upload a PDF file";
 
-    function detectDevice() {
+    const detectDevice = () =>{
         const toMatch = [
             /Android/i,
             /webOS/i,
@@ -55,10 +55,11 @@ function DragAndDrop({setName, setBtnVisibility}) {
         });
     }
 
-    function sendPDF(files) {
+    const sendPDF = (files) => {
         setState(false);
         setProcessing(true);
         mergePDF(files).then(f => {
+            console.log("files loaded");
             setName(files[0].name);
             setBtnVisibility(true);
             setFiles(f);
@@ -66,7 +67,7 @@ function DragAndDrop({setName, setBtnVisibility}) {
         });
     }
 
-    function handleFile(pdfDoc) {
+    const handleFile = (pdfDoc) =>{
         let countValidPDF = 0;
 
         if (pdfDoc.length === 1) {
@@ -101,10 +102,13 @@ function DragAndDrop({setName, setBtnVisibility}) {
         for (let i = 0; i < files.length; i++) {
             
             let bytes = await readFile(files[i]);
-
+            console.log(bytes);
             const pdf = await PDFDocument.load(bytes);
+            console.log(pdf);
             const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-            copiedPages.forEach((page) => {
+            console.log(copiedPages);
+            copiedPages.forEach((page, i) => {
+                console.log(i);
                 mergedPdf.addPage(page);
             }); 
             
@@ -113,7 +117,7 @@ function DragAndDrop({setName, setBtnVisibility}) {
         return mergedPdfFile;
     }
     
-    function readFile(file) {
+    const readFile = (file) =>{
         return new Promise((resolve,reject) =>{
             let reader = new FileReader();
 
@@ -122,7 +126,7 @@ function DragAndDrop({setName, setBtnVisibility}) {
             }
             reader.onerror = reject; 
             reader.readAsArrayBuffer(file);
-        })
+        });
     }
 
     function inputFiles(e) {

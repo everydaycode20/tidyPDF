@@ -1,12 +1,10 @@
 import React, {useState, useContext} from "react";
-import LoadFilesIcon from  "../icons/load_file_icon.svg";
 import DownloadIcon from "../icons/download_icon.png";
 import DownloadIconGif from "../icons/download_gif.gif";
 import "../styles/header.scss";
 import { PDFDocument} from 'pdf-lib'
 import {Context} from "../comp/context";
 import download from 'downloadjs';
-import {Link} from "react-router-dom";
 
 function Header({name, btnVisibility}) {
 
@@ -54,11 +52,9 @@ function Header({name, btnVisibility}) {
     
     return <>
         <div className="top-container">
-            <Link to="/" className="link-container">
-                <div className="logo">
-                    <h3><span>tidy</span>PDF</h3>
-                </div>
-            </Link>
+            <div className="logo">
+                <h3><span>tidy</span>PDF</h3>
+            </div>
             {/* <button className="load-btn">
                 start over
                 <img src={LoadFilesIcon} alt="load pdf icon"/>

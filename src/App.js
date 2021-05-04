@@ -4,7 +4,6 @@ import DragAndDrop from "./comp/drag-and-drop-box";
 import "./styles/app.scss";
 import Canvas from "./comp/canvas";
 import {Context} from "./comp/context";
-import Main from "./comp/main";
 
 function App() {
 
